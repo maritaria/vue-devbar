@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve ./demo/main",
+    "build:demo": "vue-cli-service build ./demo/main",
+    "build": "vue-cli-service build --target lib --name vue-devbar src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
@@ -21,6 +20,16 @@
     "eslint-plugin-vue": "^5.0.0",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "core-js": "^2.6.5",
+    "vue": "^2.6.10"
+  },
+  "main": "dist/vue-devbar.umd.js",
+  "browser": "dist/vue-devbar.common.js",
+  "unpkg": "dist/vue-devbar.umd.min.js",
+  "jsDelivr": "dist/vue-devbar.umd.min.js",
+  "files": ["dist", "src"],
+  "peerDependencies": {
+    "vue": "^2.6.10"
   }
 }
