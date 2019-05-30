@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ message }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -87,12 +87,30 @@
 </template>
 
 <script>
-export default {
-  name: "HelloWorld",
-  props: {
-    msg: String
+import Vue from "vue";
+import { Component, Prop } from "vue-property-decorator";
+import { DebugAction } from "../../src/decorators/debug-action";
+
+export default
+@Component
+class HelloWorld extends Vue {
+  @Prop({ type: String })
+  msg;
+  messageOverride = null;
+
+  get message() {
+    return this.messageOverride || this.msg;
   }
-};
+
+  @DebugAction({ label: "Update message" })
+  onTestAction() {
+    this.messageOverride = "This is the override";
+  }
+
+  mounted() {
+    this.$devbar.root = this;
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -9,26 +9,32 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
     "@vue/eslint-config-prettier": "^4.0.1",
     "babel-eslint": "^10.0.1",
+    "core-js": "^2.6.5",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.10",
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10"
   },
   "main": "dist/vue-devbar.umd.js",
   "browser": "dist/vue-devbar.common.js",
   "unpkg": "dist/vue-devbar.umd.min.js",
   "jsDelivr": "dist/vue-devbar.umd.min.js",
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "peerDependencies": {
     "vue": "^2.6.10"
   }

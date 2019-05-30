@@ -2,15 +2,18 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
+    <devbar-host />
   </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import DevbarHost from "../src/components/DevbarHost";
 
 export default {
   name: "app",
   components: {
+    DevbarHost,
     HelloWorld
   }
 };
