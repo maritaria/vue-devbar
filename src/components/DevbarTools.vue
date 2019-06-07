@@ -17,12 +17,8 @@ import { getDevbarOptions } from "../decorators/util";
 
 @Component({})
 export default class DevbarTools extends Vue {
-  get root() {
-    return this.$devbar.root;
-  }
   get actions() {
-    console.log(this.root);
-    return getDevbarOptions(this.root.$options).actions;
+    return getDevbarOptions(this.$devbar.root.$options).actions;
   }
 }
 </script>

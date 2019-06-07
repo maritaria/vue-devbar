@@ -10,6 +10,7 @@
   /* Fixate the tool at the bottom of the screen */
   position: fixed;
   bottom: 0;
+  /* Stretch the tool over the entire width of the viewport */
   left: 0;
   right: 0;
 }
