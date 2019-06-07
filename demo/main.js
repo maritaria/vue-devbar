@@ -1,6 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue";
 import Devbar from "../src";
+import { router } from "./router";
+import { store } from "./store";
+import "./filters";
 
 Vue.use(Devbar);
 
@@ -10,5 +13,7 @@ const devbar = new Devbar();
 
 new Vue({
   render: h => h(App),
-  devbar
+  devbar,
+  router,
+  store
 }).$mount("#app");

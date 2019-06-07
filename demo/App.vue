@@ -1,31 +1,22 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <navigation />
+    <router-view />
     <devbar-host />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
 import DevbarHost from "../src/components/DevbarHost";
+import Navigation from "./components/Navigation";
 
-export default {
-  name: "app",
+@Component({
   components: {
-    DevbarHost,
-    HelloWorld
+    Navigation,
+    DevbarHost
   }
-};
+})
+export default class App extends Vue {}
 </script>
-
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
