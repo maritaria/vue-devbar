@@ -1,4 +1,4 @@
-import { sleep } from "../api-mocking";
+import {randomFail, sleep} from '../api-mocking';
 
 export const products = {
   state: () => ({
@@ -15,7 +15,8 @@ export const products = {
       }
       // Fake api fetch delay
       await sleep(1000);
-      await rareFail();
+      // Randomly fail the request, so the app has error states also
+      await randomFail();
       commit("defineProduct", { name: "vue-license", price: 0 });
       commit("defineProduct", { name: "sturbacks-coffee", price: 16.75 });
       commit("defineProduct", { name: "flammable-jetski", price: 500 });
