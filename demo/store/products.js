@@ -1,4 +1,4 @@
-import {randomFail, sleep} from '../api-mocking';
+import { randomFail, sleep } from "../api-mocking";
 
 export const products = {
   state: () => ({
