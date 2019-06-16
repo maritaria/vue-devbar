@@ -37,6 +37,10 @@ export default class StoreView extends Vue {
     return this.$store.state.products.names;
   }
 
+  created() {
+    this.$store.dispatch("loadProducts");
+  }
+
   linkToProduct(name) {
     return {
       name: "product",

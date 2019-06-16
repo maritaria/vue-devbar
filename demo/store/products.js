@@ -3,16 +3,22 @@ import { randomFail, sleep } from "../api-mocking";
 export const products = {
   state: () => ({
     map: {},
-    names: []
+    names: [],
+    loadPromise: null
   }),
   getters: {
     productPrice: state => name => (state.map[name] ? state.map[name].price : 0)
   },
   actions: {
-    loadProducts: async ({ state, commit }) => {
+    loadProducts: ({ state, commit, dispatch }) => {
       if (state.loadPromise) {
         return state.loadPromise;
       }
+      const promise = dispatch("loadProductsInternal");
+      commit("setProductsPromise", promise);
+      return promise;
+    },
+    loadProductsInternal: async ({ commit }) => {
       // Fake api fetch delay
       await sleep(1000);
       // Randomly fail the request, so the app has error states also
@@ -27,7 +33,12 @@ export const products = {
       state.map[name] = {
         price
       };
-      state.names.push(name);
+      if (!state.names.includes(name)) {
+        state.names.push(name);
+      }
+    },
+    setProductsPromise: (state, promise) => {
+      state.loadPromise = promise;
     }
   }
 };
