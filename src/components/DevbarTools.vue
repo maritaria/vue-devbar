@@ -14,7 +14,7 @@
 <script>
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import { getDevbarOptions } from "../decorators/util";
+import { getDevbarOptions } from "../component-info";
 import ComponentTree from "./ComponentTree";
 
 @Component({

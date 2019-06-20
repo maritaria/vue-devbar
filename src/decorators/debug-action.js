@@ -1,5 +1,5 @@
 import { createDecorator } from "vue-class-component";
-import { getDevbarOptions } from "./util";
+import { getDevbarOptions } from "../component-info";
 
 class DebugActionInfo {
   label;

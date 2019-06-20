@@ -1,4 +1,4 @@
-import { getDevbarOptions } from "./util";
+import { getDevbarOptions } from "../component-info";
 
 /**
  * @param self {boolean} Prevent the component from being sniped

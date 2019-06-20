@@ -29,7 +29,7 @@
 <script>
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import { getComponentName, getDevbarOptions } from "../decorators/util";
+import { getComponentName, getDevbarOptions } from "../component-info";
 
 @Component({})
 export default class ComponentTreeNode extends Vue {
