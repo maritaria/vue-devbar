@@ -8,14 +8,18 @@
     >
       {{ action.label }}
     </button>
+    <component-tree :root="$devbar.root" />
   </div>
 </template>
 <script>
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import { getDevbarOptions } from "../decorators/util";
+import ComponentTree from "./ComponentTree";
 
-@Component({})
+@Component({
+  components: { ComponentTree }
+})
 export default class DevbarTools extends Vue {
   get actions() {
     return getDevbarOptions(this.$devbar.root.$options).actions;
