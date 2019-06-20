@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Store</h1>
-    <div class="row">
+    <spinner v-if="loading" />
+    <div v-else class="row">
       <div class="col">
         <ul>
           <li v-for="name in products" :key="name">
@@ -10,7 +11,6 @@
             </router-link>
           </li>
         </ul>
-        <button @click="addProduct">Add</button>
       </div>
       <div class="col">
         <router-view />
@@ -30,15 +30,36 @@
 <script>
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import { Mock } from "../../src/decorators/mock";
+import { Kick } from "../../src/decorators/kick";
+import Spinner from "../components/Spinner";
 
-@Component({})
+@Component({
+  components: { Spinner }
+})
 export default class StoreView extends Vue {
+  rloading = false;
+
+  @Mock({ label: "loading", factory: () => true })
+  @Mock({ label: "done", factory: () => false })
+  get loading() {
+    return this.rloading;
+  }
+  set loading(value) {
+    this.rloading = value;
+  }
+
   get products() {
     return this.$store.state.products.names;
   }
 
-  created() {
-    this.$store.dispatch("loadProducts");
+  async created() {
+    this.loading = true;
+    try {
+      await this.$store.dispatch("loadProducts");
+    } finally {
+      this.loading = false;
+    }
   }
 
   linkToProduct(name) {
@@ -50,6 +71,7 @@ export default class StoreView extends Vue {
     };
   }
 
+  @Kick()
   addProduct() {
     this.$store.commit("defineProduct", { name: "new-item", price: 20 });
   }

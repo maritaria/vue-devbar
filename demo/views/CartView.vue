@@ -60,6 +60,7 @@ tfoot {
 <script>
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import { Mock } from "../../src/decorators/mock";
 
 @Component({})
 export default class CartView extends Vue {
@@ -84,6 +85,8 @@ export default class CartView extends Vue {
     return this.$store.getters.cartTotalCount;
   }
 
+  @Mock({ label: "zero", factory: () => 0 })
+  @Mock({ label: "negative", factory: () => -1 })
   get cartTotalPrice() {
     return this.$store.getters.cartTotalPrice;
   }

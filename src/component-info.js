@@ -3,6 +3,7 @@
  * @typedef {Object} DevbarDecoratorData
  * @property {KickInfo[]} kicks
  * @property {CloakInfo} cloak
+ * @property {Record<string, MockGroupInfo>} mocks
  */
 
 /**
@@ -20,6 +21,7 @@ export function getDevbarOptions(options) {
     options.devbarDecoratorData ||
     (options.devbarDecoratorData = {
       kicks: [],
+      mocks: {},
       cloak: { self: false, children: false }
     })
   );
