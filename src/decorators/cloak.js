@@ -1,6 +1,12 @@
 import { getDevbarOptions } from "../component-info";
 
 /**
+ * @typedef {Object} CloakInfo
+ * @property {boolean} self
+ * @property {boolean} children
+ */
+
+/**
  * @param self {boolean} Prevent the component from being sniped
  * @param children {boolean} Prevent children from being sniped
  */

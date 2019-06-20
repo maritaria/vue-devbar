@@ -1,7 +1,7 @@
 import { createDecorator } from "vue-class-component";
 import { getDevbarOptions } from "../component-info";
 
-class DebugActionInfo {
+class KickInfo {
   label;
   method;
 
@@ -15,15 +15,16 @@ class DebugActionInfo {
   }
 }
 
-export function DebugAction({ label } = {}) {
+export function Kick({ label } = {}) {
   return createDecorator((component, key) => {
     const method = component.methods[key];
-    console.assert(method, "DebugAction could not find the method");
+    console.assert(method, "Kick could not find the method");
     const devbar = getDevbarOptions(component);
-    const data = new DebugActionInfo({
-      label: label || method.name,
-      method
-    });
-    (devbar.actions || (devbar.actions = [])).push(data);
+    devbar.kicks.push(
+      new KickInfo({
+        label: label || method.name,
+        method
+      })
+    );
   });
 }

@@ -1,31 +1,25 @@
 /**
  * Define the DevbarOptions type, each decorator code file will add its own extensions to it
- * @typedef {Object} DevbarOptions
- * @property {DebugActionInfo[]} actions
- * @property {CloakOptions} cloak
- */
-
-/**
- * @typedef {Object} CloakOptions
- * @property {boolean} self
- * @property {boolean} children
+ * @typedef {Object} DevbarDecoratorData
+ * @property {KickInfo[]} kicks
+ * @property {CloakInfo} cloak
  */
 
 /**
  * Extend the ComponentOptions to add devbarOptions, not set by users themselves but populated by the decorators
  * @class ComponentOptions
- * @property {DevbarOptions} devbarOptions
+ * @property {DevbarDecoratorData} devbarDecoratorData
  */
 
 /**
  * @param {ComponentOptions} options
- * @returns {DevbarOptions}
+ * @returns {DevbarDecoratorData}
  */
 export function getDevbarOptions(options) {
   return (
-    options.devbarOptions ||
-    (options.devbarOptions = {
-      actions: [],
+    options.devbarDecoratorData ||
+    (options.devbarDecoratorData = {
+      kicks: [],
       cloak: { self: false, children: false }
     })
   );
