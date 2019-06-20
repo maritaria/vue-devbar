@@ -1,4 +1,6 @@
 import { install } from "./install";
+import "@mdi/font/css/materialdesignicons.css";
+import "normalize.css";
 
 export default class Devbar {
   static install(vue, options) {

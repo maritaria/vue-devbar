@@ -1,7 +1,12 @@
 <template>
-  <li>
-    <button @click.prevent="expanded = !expanded">{{ title }}</button>
-    <ul v-if="postMount && expanded">
+  <li class="node" :class="{ expanded, leaf }">
+    <div class="node__parent">
+      <a @click="expanded = !expanded">
+        <i class="mdi" :class="expanderIcon" />
+        {{ title }}
+      </a>
+    </div>
+    <ul v-if="!childrenHidden && expanded" class="node__children">
       <component-tree-node
         v-for="child in children"
         :key="child._uid"
@@ -10,10 +15,21 @@
     </ul>
   </li>
 </template>
-<style scoped></style>
+<style scoped lang="scss">
+@import "../style/bootstrap";
+
+.node {
+  display: block;
+
+  & > .node__children {
+    margin-left: $indent;
+  }
+}
+</style>
 <script>
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
+import { getComponentName, getDevbarOptions } from "../decorators/util";
 
 @Component({})
 export default class ComponentTreeNode extends Vue {
@@ -34,7 +50,22 @@ export default class ComponentTreeNode extends Vue {
   }
 
   get children() {
-    return this.item.$children;
+    const result = [];
+    // Pending is a reversed array so when we push() children of a node they get popped first
+    const pending = this.item.$children.slice();
+    while (pending.length) {
+      const current = pending.shift();
+      if (!current.$options) {
+        continue;
+      }
+      const cloak = getDevbarOptions(current.$options).cloak;
+      if (!cloak.self) {
+        result.push(current);
+      } else if (!cloak.children) {
+        pending.unshift(...current.$children);
+      }
+    }
+    return result;
   }
 
   get title() {
@@ -42,8 +73,23 @@ export default class ComponentTreeNode extends Vue {
   }
 
   get itemName() {
+    return getComponentName(this.item);
+  }
+
+  get leaf() {
+    return this.childrenHidden || this.children.length === 0;
+  }
+
+  get expanderIcon() {
+    if (this.leaf) {
+      return "mdi-circle-medium";
+    }
+    return this.expanded ? "mdi-chevron-down" : "mdi-chevron-right";
+  }
+
+  get childrenHidden() {
     return (
-      this.item.$options.name || (this.item.$vnode && this.item.$vnode.tag)
+      !this.postMount && getDevbarOptions(this.item.$options).cloak.children
     );
   }
 }

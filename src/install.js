@@ -1,4 +1,4 @@
-/** @class ComponentOptions<Vue>
+/** @class ComponentOptions
  * @property {?Devbar} devbar
  */
 
