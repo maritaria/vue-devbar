@@ -1,0 +1,21 @@
+{
+  "name": "vue-devbar-decorators",
+  "version": "0.1.0",
+  "description": "Decorators to be used with vue-devbar",
+  "license": "MIT",
+  "dependencies": {
+    "vue-class-component": "^7.1.0"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "rollup": "^1.19.4",
+    "typescript": "^3.5.3"
+  },
+  "main": "lib/vue-devbar-decorators.umd.js",
+  "module": "lib/vue-devbar-decorators.js",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json && rollup -c"
+  }
+}

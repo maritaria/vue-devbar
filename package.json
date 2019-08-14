@@ -1,45 +1,14 @@
 {
-  "name": "vue-devbar",
-  "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve ./demo/main",
-    "build:demo": "vue-cli-service build ./demo/main",
-    "build": "vue-cli-service build --target lib --name vue-devbar src/index.js",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "@mdi/font": "^3.6.95",
-    "normalize.css": "^8.0.1",
-    "vue-class-component": "^7.1.0",
-    "vue-property-decorator": "^8.1.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-eslint": "^3.8.0",
-    "@vue/cli-service": "^3.8.0",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "babel-eslint": "^10.0.1",
-    "core-js": "^2.6.5",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "sass": "^1.18.0",
-    "sass-loader": "^7.1.0",
-    "vue": "^2.6.10",
-    "vue-router": "^3.0.6",
-    "vue-template-compiler": "^2.6.10",
-    "vuex": "^3.1.1"
-  },
-  "main": "dist/vue-devbar.umd.js",
-  "browser": "dist/vue-devbar.common.js",
-  "unpkg": "dist/vue-devbar.umd.min.js",
-  "jsDelivr": "dist/vue-devbar.umd.min.js",
-  "files": [
-    "dist",
-    "src"
+  "workspaces": [
+    "demo-es6",
+    "demo-typescript",
+    "vue-devbar",
+    "vue-devbar-decorators"
   ],
-  "peerDependencies": {
-    "vue": "^2.6.10"
+  "scripts": {
+    "build": "yarn build:source && yarn build:demo",
+    "build:demo": "yarn workspace demo-es6 build && yarn workspace demo-typescript build",
+    "build:source": "yarn workspace vue-devbar-decorators build && yarn workspace vue-devbar build"
   }
 }
