@@ -1,6 +1,6 @@
 {
   "name": "vue-devbar-decorators",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Decorators to be used with vue-devbar",
   "license": "MIT",
   "dependencies": {

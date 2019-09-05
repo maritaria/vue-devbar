@@ -1,2 +1,1 @@
-export declare const A = 4;
-export declare const B = 5;
+export { getDevbarOptions } from './component-info';
